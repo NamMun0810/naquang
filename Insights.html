@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Analytics - Real Estate Insights</title>
+
+    <link rel="stylesheet" href="Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Property Analytics</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="insights-link">Insights</a></li>
+                <li><a href="#" id="about-link">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Hero Image Section -->
+<section id="hero-section">
+    <div class="hero-text">
+        <h2 id="hero-text-content">Discover Insights and Make Smart Investments</h2>
+    </div>
+</section>
+
+    <!-- Insights Section -->
+    <section id="insights-section" class="section">
+        <h2>Real Estate Market Insights</h2>
+        
+        <div id="market-overview" class="card">
+            <h3>Market Overview</h3>
+            <p><i class="fas fa-chart-line"></i> Our machine learning model predicts housing prices in Melbourne with an 85% accuracy. Here are some of the latest trends:</p>
+            <div class="insights-graph">
+                <canvas id="priceTrendChart"></canvas>
+            </div>
+        </div>
+
+        <div id="top-suburbs-section" class="card">
+            <h3><i class="fas fa-map-marker-alt"></i> Top Suburbs to Invest</h3>
+            <input type="text" id="searchSuburb" placeholder="Search suburbs..." class="search-bar">
+            <ul id="topSuburbsList"></ul>
+        </div>
+
+        <!-- Price Prediction Tool (Only in Insights Section) -->
+        <div id="price-prediction-section" class="card">
+            <h3><i class="fas fa-dollar-sign"></i> Price Prediction Tool</h3>
+            <form id="predictionForm">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+                
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <input type="number" id="bedrooms" name="bedrooms" required>
+                
+                <label for="size">Size (sqm):</label>
+                <input type="number" id="size" name="size" required>
+                
+                <button type="submit" class="btn">Predict Price</button>
+            </form>
+            
+            <div id="predictionResult">
+                <h4>Estimated Price: <span id="priceOutput"></span></h4>
+            </div>
+        </div>
+
+        <!-- Feature Importance Visualization -->
+        <div id="feature-importance-section" class="card">
+            <h3><i class="fas fa-balance-scale"></i> Feature Importance</h3>
+            <canvas id="featureImportanceChart"></canvas>
+        </div>
+
+        <!-- Scatter Plot for Clustering -->
+        <div id="clustering-section" class="card">
+            <h3><i class="fas fa-project-diagram"></i> Housing Segments Based on K-Means Clustering</h3>
+            <canvas id="scatterPlot"></canvas>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+<section id="about-section" class="section" style="display: none;">
+    <h2>About Property Analytics</h2>
+    <p>At Property Analytics, we are a data-driven company dedicated to empowering real estate investors, homeowners, and industry professionals by providing accurate, AI-powered insights into the housing market. Our goal is to revolutionize how people understand and interact with the dynamic real estate market through advanced machine learning techniques and intuitive visualizations.
+
+        Our comprehensive web platform allows users to make informed decisions based on real-time data predictions, price trends, and market segmentations. Whether you're looking to invest in a property or understand the market trends, our AI models are here to help you navigate the complexities of the housing market with precision.</p>
+    
+    <h3>Our Team</h3>
+    <div class="team">
+        <div class="team-member">
+            <img src="https://scontent.fmel15-2.fna.fbcdn.net/v/t39.30808-1/440473992_2184703411891262_6678189701199618847_n.jpg?stp=dst-jpg_s200x200&_nc_cat=103&ccb=1-7&_nc_sid=0ecb9b&_nc_ohc=88CZ-wsPucAQ7kNvgF-CWdw&_nc_zt=24&_nc_ht=scontent.fmel15-2.fna&_nc_gid=AdU0nsqHUb-zD_Ap59bzxef&oh=00_AYApzkKpSXJmL8R3pjte0FRoAOTQwtZ9VNN6a2q20aUhUw&oe=67192700" alt="Thu Tran" class="team-photo"> 
+            <h4>Thu Tran</h4>
+            <p>Lead Data Analyst with expertise in machine learning and predictive analytics.</p>
+        </div>
+        <div class="team-member">
+            <img src="https://scontent.fmel15-2.fna.fbcdn.net/v/t39.30808-6/409626695_1545741559494680_6715797904626390131_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=bfbPbd1mwk8Q7kNvgF0fMn7&_nc_zt=23&_nc_ht=scontent.fmel15-2.fna&_nc_gid=AAWBduS8cR_somOt_us9nG7&oh=00_AYDjimqf8ZihXaFY58wZ7hJ3PUFu5LiiDbJIFSZCXdDKZQ&oe=67191437" alt="Dat Tran" class="team-photo"> 
+            <h4>Dat Tran</h4>
+            <p>Real Estate Consultant with a deep understanding of the Melbourne property market.</p>
+        </div>
+        <div class="team-member">
+            <img src="https://scontent.fmel15-1.fna.fbcdn.net/v/t39.30808-6/410243812_1406154053312407_3375137972282285462_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=hF-WgkfYKYIQ7kNvgHN79MU&_nc_zt=23&_nc_ht=scontent.fmel15-1.fna&_nc_gid=AWxOE0KeVWGEsBJ81fTP6ch&oh=00_AYA1uuKhzZJhft50Z42pSBL3Bd5jBOQNWSsNHxvSwGxznQ&oe=671921EA" alt="Nam Quang" class="team-photo"> 
+            <h4>Nam Quang</h4>
+            <p>Data Scientist specializing in housing price modeling and market trend analysis.</p>
+        </div>
+    </div>
+
+    <h3>Special Functions</h3>
+    <ul>
+        <li><strong>Price Prediction</strong>: AI-driven predictions of housing prices based on property features and location.</li>
+        <li><strong>Market Trends</strong>: Visual insights into current housing market trends and top-performing suburbs.</li>
+        <li><strong>Custom Reports</strong>: Generate detailed, custom reports on specific regions or property types.</li>
+        <li><strong>Data Visualization</strong>: Interactive charts showcasing price distributions and market features.</li>
+        <li><strong>Real-Time Updates</strong>: Stay informed with continuously updated data on the housing market.</li>
+        <li><strong>Advanced Filters</strong>: Refine data by price, location, or property characteristics.</li>
+        <li><strong>Error Handling</strong>: Robust input validation ensures accurate predictions.</li>
+    </ul>
+    
+    <h3>Contact Us</h3>
+    <p><i class="fas fa-phone"></i> Phone: <a href="tel:+61434420492">+61 434 420 492</a></p>
+    <p><i class="fas fa-envelope"></i> Emails:</p>
+    <ul>
+        <li><a href="mailto:104061810@student.swin.edu.au">Thu Tran: 104061810@student.swin.edu.au</a></li>
+        <li><a href="mailto:104207944@student.swin.edu.au">Dat Tran: 104207944@student.swin.edu.au</a></li>
+        <li><a href="mailto:104480444@student.swin.edu.au">Nam Quang: 104480444@student.swin.edu.au</a></li>
+    </ul>
+    
+    <h3>Location</h3>
+    <p><i class="fas fa-map-marker-alt"></i> Address: John St, Hawthorn VIC 3122, Australia</p>
+
+    <!-- Embed Google Map -->
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093747!2d145.03393431531848!3d-37.8201529797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642f4f5c3e4b7%3A0x7c9d2f41a5cf1f0!2sJohn%20St%2C%20Hawthorn%20VIC%203122%2C%20Australia!5e0!3m2!1sen!2sus!4v1697777082056!5m2!1sen!2sus"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Property Analytics. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
